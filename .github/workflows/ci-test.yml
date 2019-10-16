@@ -24,7 +24,7 @@ jobs:
     - name: Build
       run: go build -v .
       env:
-        - GO111MODULE:on
+        - GO111MODULE: on
 
     - name: Test
       run: |
