@@ -29,6 +29,14 @@ func createList(lenght int, isIntValue bool) (*list.List, []interface{}) {
 
 func TestReverse(t *testing.T) {
 
+	assertCorrectData := func(t *testing.T, want, got []interface{}) {
+		t.Helper()
+
+		if !reflect.DeepEqual(want, got) {
+			t.Fatalf("want:%v, got:%v", want, got)
+		}
+	}
+
 	type cases struct {
 		name string
 		l    *list.List
@@ -49,11 +57,15 @@ func TestReverse(t *testing.T) {
 
 	for _, x := range datas {
 		t.Run(x.name, func(t *testing.T) {
-			got := change(x.l)
+			got := recursive(x.l)
+			assertCorrectData(t, x.want, got)
+		})
+	}
 
-			if !reflect.DeepEqual(x.want, got) {
-				t.Fatalf("want:%v, got:%v", x.want, got)
-			}
+	for _, x := range datas {
+		t.Run(x.name, func(t *testing.T) {
+			got := change(x.l)
+			assertCorrectData(t, x.want, got)
 		})
 	}
 }
