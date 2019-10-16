@@ -56,14 +56,21 @@ func TestReverse(t *testing.T) {
 	}
 
 	for _, x := range datas {
-		t.Run(x.name, func(t *testing.T) {
+		t.Run("递归"+x.name, func(t *testing.T) {
 			got := recursive(x.l)
 			assertCorrectData(t, x.want, got)
 		})
 	}
 
 	for _, x := range datas {
-		t.Run(x.name, func(t *testing.T) {
+		t.Run("空间换时间"+x.name, func(t *testing.T) {
+			got := space(x.l)
+			assertCorrectData(t, x.want, got)
+		})
+	}
+
+	for _, x := range datas {
+		t.Run("修改链表方向"+x.name, func(t *testing.T) {
 			got := change(x.l)
 			assertCorrectData(t, x.want, got)
 		})
