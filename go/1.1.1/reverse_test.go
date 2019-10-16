@@ -76,3 +76,24 @@ func TestReverse(t *testing.T) {
 		})
 	}
 }
+
+func BenchmarkRecursive(b *testing.B) {
+	intList10k, _ := createList(10000, true)
+	for i := 0; i < b.N; i++ {
+		recursive(intList10k)
+	}
+}
+
+func BenchmarkSpace(b *testing.B) {
+	intList10k, _ := createList(10000, true)
+	for i := 0; i < b.N; i++ {
+		space(intList10k)
+	}
+}
+
+func BenchmarkChange(b *testing.B) {
+	intList10k, _ := createList(10000, true)
+	for i := 0; i < b.N; i++ {
+		change(intList10k)
+	}
+}
