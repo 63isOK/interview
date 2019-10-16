@@ -1,0 +1,30 @@
+name: ci-test
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-18.04,windows-2016,macOS-10.14]
+        go: ['1.11','1.12.9','1.13']
+      max-parallel: 9
+
+    steps:
+    - name: Set up Go 1.10+
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go }}
+      id: go
+
+    - name: Check out code 
+      uses: actions/checkout@v1
+
+    - name: Build
+      run: go build -v .
+
+    - name: Test
+      run: |
+        go test -v
+        go test -v ./...
