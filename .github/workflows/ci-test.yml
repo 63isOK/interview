@@ -24,6 +24,8 @@ jobs:
     - name: Build
       run: |
         export GO111MODULE=on
+        rm go.mod
+        go mod init main
         go mod tidy -v
         go build -v .
 
