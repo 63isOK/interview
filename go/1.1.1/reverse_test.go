@@ -13,7 +13,7 @@ func TestReverse(t *testing.T) {
 	l := list.New()         // 999...1
 	want := []interface{}{} // 1...999
 
-	for i := 1; i < 1000; i++ {
+	for i := 1; i < 1010; i++ {
 		l.PushFront(i)
 		want = append(want, i)
 	}
