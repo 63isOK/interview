@@ -7,3 +7,4 @@
 <https://github.com/0voice/interview_internal_reference> 中技术问题的一些思考
 
 - [x] [1.1.1 如何实现一个高效的单向链表逆序输出？](/go/1.1.1/README.md)
+- [ ] [1.1.2 已知 sqrt (2)约等于 1.414，要求不用数学库，求 sqrt (2)精确到小数点后 10 位。](/go/1.1.2/README.md)
