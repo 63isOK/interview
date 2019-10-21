@@ -87,6 +87,43 @@ func createBST4() *BST {
 	return b
 }
 
+func createBST5() *BST {
+	b := &BST{key: 99999, value: 999990}
+	last := b
+
+	for i := 99998; i > 0; i-- {
+		n := &BST{key: i, value: i * 10}
+		last.setLeft(n)
+
+		last = n
+	}
+
+	return b
+}
+
+func createBST6() *BST {
+	b := &BST{key: 50000, value: 500000}
+	last := b
+
+	for i := 49999; i > 0; i-- {
+		n := &BST{key: i, value: i * 10}
+		last.setLeft(n)
+
+		last = n
+	}
+
+	last = b
+
+	for i := 50001; i < 100000; i++ {
+		n := &BST{key: i, value: i * 10}
+		last.setRight(n)
+
+		last = n
+	}
+
+	return b
+}
+
 func TestK(t *testing.T) {
 	bst1 := createBST1()
 	bst2 := createBST2()
@@ -157,5 +194,47 @@ func checkCall(t *testing.T, b *BST, k, value int, find func(bst *BST, kth int) 
 	got := find(b, k)
 	if got != value {
 		t.Fatalf("want:%d, got:%d", value, got)
+	}
+}
+
+func BenchmarkCountLeft(b *testing.B) {
+	bst := createBST4()
+	for i := 0; i < b.N; i++ {
+		countLeft(bst, 99999)
+	}
+}
+
+func BenchmarkCount(b *testing.B) {
+	bst := createBST4()
+	for i := 0; i < b.N; i++ {
+		count(bst, 99999)
+	}
+}
+
+func BenchmarkCountLeft2(b *testing.B) {
+	bst := createBST5()
+	for i := 0; i < b.N; i++ {
+		countLeft(bst, 99999)
+	}
+}
+
+func BenchmarkCount2(b *testing.B) {
+	bst := createBST5()
+	for i := 0; i < b.N; i++ {
+		count(bst, 99999)
+	}
+}
+
+func BenchmarkCountLeft3(b *testing.B) {
+	bst := createBST5()
+	for i := 0; i < b.N; i++ {
+		countLeft(bst, 99999)
+	}
+}
+
+func BenchmarkCount3(b *testing.B) {
+	bst := createBST6()
+	for i := 0; i < b.N; i++ {
+		count(bst, 99999)
 	}
 }
