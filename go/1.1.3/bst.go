@@ -58,7 +58,52 @@ func countRecursive(bst *BST, c *int, k int) (bool, int) {
 }
 
 func countLeft(bst *BST, k int) int {
+	if k < 1 {
+		return 0
+	}
+
+	ok, value := leftRecursive(bst, k)
+
+	if ok {
+		return value
+	}
+
 	return 0
+}
+
+func leftRecursive(bst *BST, k int) (bool, int) {
+	leftCount := 0
+	if bst.left != nil {
+		leftCount = nodeCount(bst.left)
+	}
+
+	if leftCount == k-1 {
+		return true, bst.value
+	}
+
+	if leftCount > k-1 {
+		return leftRecursive(bst.left, k)
+	}
+
+	if bst.right == nil {
+		return false, 0
+	}
+
+	return leftRecursive(bst.right, k-leftCount-1)
+}
+
+func nodeCount(bst *BST) int {
+	c := 1
+
+	if bst.left != nil {
+		c += nodeCount(bst.left)
+	}
+
+	if bst.right != nil {
+		c += nodeCount(bst.right)
+	}
+
+	return c
 }
 
 func main() {

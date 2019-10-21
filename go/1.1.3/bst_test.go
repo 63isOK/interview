@@ -148,7 +148,7 @@ func check(t *testing.T, b *BST, k, value int) {
 	t.Helper()
 
 	checkCall(t, b, k, value, count)
-	// checkCall(t, b, k, value, countLeft)
+	checkCall(t, b, k, value, countLeft)
 }
 
 func checkCall(t *testing.T, b *BST, k, value int, find func(bst *BST, kth int) int) {
