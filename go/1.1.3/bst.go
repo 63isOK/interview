@@ -33,6 +33,7 @@ func count(bst *BST, k int) int {
 	return 0
 }
 
+// countRecurisive is in-order(LNR)中序遍历
 func countRecursive(bst *BST, c *int, k int) (bool, int) {
 	if bst.left != nil {
 		ok, value := countRecursive(bst.left, c, k)
